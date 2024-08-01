@@ -6,9 +6,10 @@ import { HttpService } from 'src/app/views/services/http.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  newTask = "";
   taskList: any = []
+  newTask = "";
   dateNow: number = Date.now();
+  status: any = false
 
   constructor(private http: HttpService) { }
 
@@ -17,10 +18,10 @@ export class TodoComponent implements OnInit {
   }
 
   addTasks() {
-    // console.log("addTask", this.newTask);
-    this.http.addTask(this.newTask, this.dateNow).subscribe(() => {
+    this.http.addTask(this.newTask, this.dateNow, this.status).subscribe(() => {
       this.newTask = "";
       this.dateNow;
+      this.status = ""
       this.getAllTask(); // Update the task list after adding a new task
     });
   }
@@ -30,9 +31,4 @@ export class TodoComponent implements OnInit {
       this.taskList = result
     );
   }
-  onComplete(task: any) {
-    task.completed = true
-    console.log("Complete", task)
-  }
-
 }

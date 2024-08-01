@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./time.component.css']
 })
 export class TimeComponent {
-
+  a: number = 0.259;
+  b: number = 1.3495;
 }
