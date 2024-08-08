@@ -1,16 +1,34 @@
 {
   "tasks": [
     {
-      "title": "lana",
-      "date": 1722514132658,
-      "statuse": false,
+      "title": "Task1",
+      "date": 1722760988685,
+      "finished": false,
       "id": 1
     },
     {
-      "title": "lana",
-      "date": 1722514788707,
-      "statuse": false,
+      "title": "Task2",
+      "date": 1722761026392,
+      "finished": false,
       "id": 2
+    },
+    {
+      "title": "Task4",
+      "date": 1722761026392,
+      "finished": "",
+      "id": 4
+    },
+    {
+      "title": "Task5",
+      "date": 1722761026392,
+      "finished": "",
+      "id": 5
+    },
+    {
+      "title": "Task6",
+      "date": 1722761101727,
+      "finished": false,
+      "id": 6
     }
   ]
 }

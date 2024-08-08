@@ -11,7 +11,7 @@ export class HttpService {
     return this.http.post("http://localhost:3000/tasks", {
       title: newTask,
       date: dateNow,
-      statuse:status
+      finished:status
     })
   }
 
@@ -23,11 +23,11 @@ export class HttpService {
     return this.http.delete(`http://localhost:3000/tasks/${id}`)
   }
 
-  updateTask(body: any ,id: any) {
-    return this.http.put(`http://localhost:3000/tasks/${id}`, body)
+  updateTask(body: any, id: any) {
+    return this.http.post(`http://localhost:3000/tasks/${id}`, body);
   }
 
-  getCurrencydata(country1:string){ 
+  getCurrencydata(country1:string){
     return this.http.get( `https://api.exchangerate-api.com/v4/latest/${country1}`)
   }
 }

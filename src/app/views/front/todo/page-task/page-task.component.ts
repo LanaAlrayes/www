@@ -5,42 +5,30 @@ import { HttpService } from 'src/app/views/services/http.service';
 @Component({
   selector: 'app-page-task',
   templateUrl: './page-task.component.html',
-  styleUrls: ['./page-task.component.css']
+  styleUrls: ['./page-task.component.css'],
 })
 export class PageTaskComponent {
-  
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
-  @Input() taskList: any[] = []
- 
-  statuse: any = false
-  dataTasks={
-    id:'',
-    title:'',
-    date:'',
-    statuse:'',
-  }
+  @Input() taskList: any[] = [];
+
+  finished: any = false;
+  maxTasks = 5;
+
   deleteTask(id: any, i: number) {
     this.http.deleteOneTask(id).subscribe(() => {
-      this.taskList.splice(i, 1)
-    })
+      this.taskList.splice(i, 1);
+    });
   }
 
-  doneTask(f: any) {
-   let data =f.value
-   this.http.updateTask(this.dataTasks.id , data).subscribe((res)=>{
-     console.log(res)
-     let indexId = this.taskList.findIndex((obj: any) => 
-        obj.id == this.dataTasks.id
-      )
-      this.taskList[indexId].statuse= data.statuse
-      console.log(data.statuse)
-   })
+  doneTask(title: any) {
+    title.finished = true;
+    this.taskList = this.taskList
+      .filter((t) => !t.finished)
+      .concat(this.taskList.filter((t) => t.finished));
+      // console.log(this.finished)
+      if (this.taskList.length > this.maxTasks) {
+        this.taskList.splice(this.maxTasks);
+      }
   }
-  // doneTask(id: any, statuse: any) {
-  //   this.http.updateTask(id, statuse).subscribe(() => {
-  //     console.log(statuse)
-  //     this.taskList[id].statuse = true;
-  //   })
-  // }
 }

@@ -25,13 +25,12 @@
                     placeholder="Enter a task here"
                     required
                     name="task"
-                    #lastname="ngModel"
+                    #task="ngModel"
                     ngModel
                     [(ngModel)]="newTask"
                   />
                 </div>
               </div>
-
               <div class="col-12">
                 <button
                   type="submit"
@@ -43,9 +42,7 @@
                   Save
                 </button>
               </div>
-
-            </form> 
-            
+            </form>
             <app-page-task [taskList]="taskList"></app-page-task>
           </div>
         </div>

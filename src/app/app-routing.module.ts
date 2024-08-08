@@ -7,7 +7,6 @@ const routes: Routes = [
     children: [
       { path: '', loadChildren: () => import('./views/front/todo/todo.module').then(m => m.TodoModule) },
       { path: 'currency', loadChildren: () => import('./views/front/currency/currency.module').then(m => m.CurrencyModule) },
-      { path: 'time', loadChildren: () => import('./views/front/time/time.module').then(m => m.TimeModule) }
     ]
   }
 ];

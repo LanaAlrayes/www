@@ -1,4 +1,5 @@
-<section class="vh-100" style="background-color: #eee">
+<!--
+  <section class="vh-100" style="background-color: #eee">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-9 col-xl-7">
@@ -64,4 +65,80 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
+
+<section class="vh-100">
+  <div class="containe d-flex justify-content-center align-items-center h-50">
+    <div class="card rounded-3">
+      <div class="card-body">
+        <h4 class="text-center my-3">Currency Converter</h4>
+        <div
+          class="row d-flex justify-content-center align-items-center">
+          <form
+            [formGroup]="MyForm"
+            (ngSubmit)="onSubmit()"
+            id="form-container">
+            <!-- Amount -->
+            <div
+              [class.error]="MyForm.get('amount').touched &&
+              MyForm.get('amount').invalid">
+              <label for="amount">Amount : </label>
+              <input
+                type="number"
+                id="amount"
+                placeholder="Enter Amount"
+                formControlName="amount"
+                />
+              <span
+                *ngIf="MyForm.get('amount').touched &&
+                MyForm.get('amount').invalid">
+                Please enter amount to convert
+              </span>
+            </div>
+
+            <!-- Currency to convert from -->
+            <div>
+              <label for="from">From : </label>
+              <select class="w-50 mt-2 ms-4" name="from" id="from" formControlName="from">
+                <option *ngFor="let currency of currencyCodes"
+                  [value]="currency">
+                  {{ currency }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Currency to convert to -->
+            <div
+              #to
+              [class.error]="MyForm.get('to').touched &&
+              MyForm.get('to').value ==
+              MyForm.get('from').value">
+
+              <label for="to">To : </label>
+
+              <select class="w-50 mt-2 ms-4" name="to" id="to" formControlName="to">
+                <option *ngFor="let currency of currencyCodes"
+                  [value]="currency">
+                  {{ currency }}
+                </option>
+              </select>
+              <span
+                *ngIf="MyForm.get('to').touched &&
+                MyForm.get('to').value == MyForm.get('from').value"
+                class="ui red text">
+                Currencies must be different
+              </span>
+            </div>
+
+            <div class="ui inverted green raised segment">{{ resultText }}</div>
+            <button
+              class="ui primary button"
+              [disabled]="MyForm.invalid || to.className == 'field error'"
+              type="submit">
+              Convert
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -6,12 +6,12 @@ import { HttpService } from 'src/app/views/services/http.service';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  taskList: any = []
-  newTask = "";
+  taskList: any = [];
+  newTask: any = '';
   dateNow: number = Date.now();
-  status: any = false
+  status: any = false;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
   ngOnInit() {
     this.getAllTask();
@@ -19,16 +19,16 @@ export class TodoComponent implements OnInit {
 
   addTasks() {
     this.http.addTask(this.newTask, this.dateNow, this.status).subscribe(() => {
-      this.newTask = "";
+      this.newTask = '';
       this.dateNow;
-      this.status = ""
+      this.status = '';
       this.getAllTask(); // Update the task list after adding a new task
     });
   }
 
   getAllTask() {
-    this.http.getAllTasks().subscribe((result: any) =>
-      this.taskList = result
-    );
+    this.http
+      .getAllTasks()
+      .subscribe((result: any) => (this.taskList = result));
   }
 }
